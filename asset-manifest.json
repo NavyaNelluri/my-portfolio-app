@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/NavyaNelluri/navyanelluriportfolio.github.io/static/css/main.d83eac06.css",
+    "main.js": "/NavyaNelluri/navyanelluriportfolio.github.io/static/js/main.9163bc95.js",
+    "index.html": "/NavyaNelluri/navyanelluriportfolio.github.io/index.html",
+    "main.d83eac06.css.map": "/NavyaNelluri/navyanelluriportfolio.github.io/static/css/main.d83eac06.css.map",
+    "main.9163bc95.js.map": "/NavyaNelluri/navyanelluriportfolio.github.io/static/js/main.9163bc95.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d83eac06.css",
+    "static/js/main.9163bc95.js"
+  ]
+}
