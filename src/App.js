@@ -23,6 +23,7 @@ import { NavLink } from "react-router-dom"; // Add this line
 
 // Education component
 const home = () => (
+
   <section id="about" className="mb-8">
     {/* About content goes here */}
     <Home />
@@ -72,16 +73,10 @@ const AppContent = () => {
   const { isDarkTheme } = useDarkTheme();
   const [currentSection, setCurrentSection] = useState(0);
   const [isProfileInfoVisible, setProfileInfoVisible] = useState(false);
+
   const navigate = useNavigate();
 
-
- 
-  const toggleDetails = (detailsId) => {
-    const detailsElement = document.getElementById(detailsId);
-    if (detailsElement) {
-      detailsElement.classList.toggle("hidden");
-    }
-  };
+  const sections = ["home", "about", "projects", "skills", "workexperience", "contact"];
 
   const nextSection = () => {
     setCurrentSection((prevSection) => (prevSection + 1) % sections.length);
@@ -92,25 +87,10 @@ const AppContent = () => {
   };
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      const currentPath = window.location.pathname.slice(1);
-      const currentSectionIndex = sections.indexOf(currentPath);
-      setCurrentSection(currentSectionIndex >= 0 ? currentSectionIndex : 0);
-    };
-
-    // Add a listener for route changes
-    window.addEventListener('popstate', handleRouteChange);
-
-    return () => {
-      // Remove the listener when the component is unmounted
-      window.removeEventListener('popstate', handleRouteChange);
-    };
-  }, []); // Run this effect only once when the component mounts
-
-  useEffect(() => {
-    const nextSectionPath = currentSection === 0 ? "" : `/${sections[currentSection]}`;
-    navigate(nextSectionPath);
-  }, [currentSection, navigate]);
+    const currentPath = window.location.pathname.slice(1);
+    const currentSectionIndex = sections.indexOf(currentPath);
+    setCurrentSection(currentSectionIndex >= 0 ? currentSectionIndex : 0);
+  }, [sections]);
 
   const toggleProfileInfo = () => {
     setProfileInfoVisible((prevVisible) => {
@@ -121,43 +101,57 @@ const AppContent = () => {
     });
   };
 
+  const handleNavigation = (index) => {
+    const nextSectionPath = index === 0 ? "" : `/${sections[index]}`;
+    navigate(nextSectionPath);
+  };
+
+
   return (
     <div className={`bg-${isDarkTheme ? 'dark' : 'light'} min-h-screen font-sans`}>
       <header className={`bg-${isDarkTheme ? 'dark' : 'light'} text-center py-5`}>
         <h1 className={`text-3xl ${isDarkTheme ? 'text-dark' : 'text-light'}`}>Navya Chowdary Nelluri</h1>
       </header>
 
-      <Navbar />
+      <Navbar handleNavigation={handleNavigation} />
 
       <main className={`${isDarkTheme ? 'text-dark' : 'text-light'} text-3xl p-4`}>
-      <TransitionGroup>
-      <CSSTransition
+        <TransitionGroup>
+          <CSSTransition
             key={currentSection}
             timeout={500}
             classNames="page-transition"
           >
-<Routes>
-<Route index element={<Home isProfileInfoVisible={isProfileInfoVisible} toggleProfileInfo={toggleProfileInfo} />} />
-
+            <Routes>
+              <Route
+                index
+                element={<Home isProfileInfoVisible={isProfileInfoVisible} toggleProfileInfo={toggleProfileInfo} />}
+                
+              />
+              
   <Route path="/about" element={<Education />} />
   <Route path="/projects" element={<ProjectsSection />} />
   <Route path="/skills" element={<Skills />} />
   <Route path="/workexperience" element={<Work />} />
   <Route path="/contact" element={<Contacts />} />
-</Routes>
-
-
-        </CSSTransition>
+              {/* Other routes */}
+            </Routes>
+          </CSSTransition>
         </TransitionGroup>
-        <div className="slideshow-arrows text-center mt-4">
-      <button onClick={prevSection}>&#8249;</button>
-      <button onClick={nextSection}>&#8250;</button>
-    </div>
+
+        
       </main>
+      <div className="slideshow-arrows text-center mt-4">
+        <button onClick={() => handleNavigation((currentSection - 1 + sections.length) % sections.length)}>
+          &#8249;
+        </button>
+        <button onClick={() => handleNavigation((currentSection + 1) % sections.length)}>
+          &#8250;
+        </button>
+      </div>
     </div>
   );
 };
-
 
 const App = () => (
   <DarkThemeProvider>

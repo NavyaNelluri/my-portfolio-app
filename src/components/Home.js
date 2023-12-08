@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 
 const Home = ({ isProfileInfoVisible, toggleProfileInfo }) => {
+
   const profileInfoRef = useRef(null);
 
   return (
