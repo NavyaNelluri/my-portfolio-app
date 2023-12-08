@@ -75,4 +75,31 @@ main {
   .text-light {
     color: black;
   }
+
+  /* Add this to your existing CSS file or create a new one */
+  /* Add this to your existing CSS */
+.slideshow-arrows {
+  display: flex;
+  justify-content: center;  /* Center horizontally */
+  align-items: center;      /* Center vertically */
+  margin-top: 20px;         /* Adjust the margin-top as needed */
+}
+
+.slideshow-arrows button {
+  /* Add any additional styling for your arrows */
+  font-size: 36px;          /* Adjust the font size as needed */
+  margin: 0 15px;           /* Adjust the horizontal spacing as needed */
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.slideshow-arrows button:hover {
+  background-color: #555;
+}
+
   

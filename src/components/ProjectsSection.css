@@ -1,0 +1,50 @@
+/* ProjectsSection.css */
+.project-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .project-thumbnail {
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .project-description {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+  
+  .project-link {
+    display: block;
+    margin-top: 8px;
+    color: #007bff;
+  }
+  
+  .project-modal {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  .project-thumbnail-modal {
+    width: 100%;
+  }
+  
+  .project-description-modal {
+    margin-top: 16px;
+    font-size: 16px;
+  }
+  
+  .close-modal-btn {
+    display: block;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
